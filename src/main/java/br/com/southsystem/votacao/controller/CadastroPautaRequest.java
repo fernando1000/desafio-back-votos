@@ -1,5 +1,6 @@
 package br.com.southsystem.votacao.controller;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
@@ -10,6 +11,6 @@ public class CadastroPautaRequest {
 	@NotNull
 	private Integer numeroPauta;
 	
-	@NotNull
+	@NotEmpty
 	private String assuntoPauta;
 }
