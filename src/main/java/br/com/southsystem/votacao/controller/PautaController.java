@@ -10,14 +10,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.southsystem.votacao.service.PautaService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
+@Tag(name = "Pauta", description = "Realiza operações relacionadas a pauta de uma assembléia")
 @RestController
-@RequestMapping("/pautas")
+@RequestMapping("/v1/pautas")
 public class PautaController {
 
 	@Autowired
 	private PautaService service;
 	
+	@Operation(summary = "Cadastra uma nova pauta")
 	@PostMapping
 	public ResponseEntity<Void> cadastraPauta(@Valid @RequestBody CadastroPautaRequest request) {
 		
