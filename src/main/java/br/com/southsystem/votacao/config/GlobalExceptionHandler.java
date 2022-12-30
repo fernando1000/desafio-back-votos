@@ -37,5 +37,13 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(new ApiErro(erros), HttpStatus.BAD_REQUEST);
     }
 
+    @ResponseBody
+    @ExceptionHandler(DomainException.class)
+    public ResponseEntity<ApiErro> mensagemDominio(DomainException ex) {
+    	log.error("Mensagem do dominio");
+    	HashMap<String, String> erros = new HashMap<>();
+    	erros.put("mensagem", ex.getMessage());
+        return new ResponseEntity<>(new ApiErro(erros), HttpStatus.CONFLICT);
+    }
 
 }

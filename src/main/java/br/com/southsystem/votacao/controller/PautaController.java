@@ -3,12 +3,14 @@ package br.com.southsystem.votacao.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.southsystem.votacao.config.DomainException;
 import br.com.southsystem.votacao.service.PautaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -23,11 +25,11 @@ public class PautaController {
 	
 	@Operation(summary = "Cadastra uma nova pauta")
 	@PostMapping
-	public ResponseEntity<Void> cadastraPauta(@Valid @RequestBody CadastroPautaRequest request) {
+	public ResponseEntity<CadastroPautaResponse> cadastraPauta(@Valid @RequestBody CadastroPautaRequest request) throws DomainException {
 		
-		service.cadastraPauta(request);
+		CadastroPautaResponse response = service.cadastraPauta(request);
 		
-		return ResponseEntity.created(null).build();
+		return new ResponseEntity<CadastroPautaResponse>(response, HttpStatus.CREATED);
 	}
 
 }
