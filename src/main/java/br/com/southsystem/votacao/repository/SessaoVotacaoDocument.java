@@ -1,5 +1,7 @@
 package br.com.southsystem.votacao.repository;
 
+import java.time.LocalDateTime;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,13 +12,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "Pauta")
-public class PautaDocument {
+@Document(collection = "SessaoVotacao")
+public class SessaoVotacaoDocument {
 
     @Id
     private String id;
     
 	private Integer numeroPauta;
-	private String assuntoPauta;
-
+	private LocalDateTime dataLimite;
 }

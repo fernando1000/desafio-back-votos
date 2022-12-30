@@ -11,23 +11,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.southsystem.votacao.config.DomainException;
-import br.com.southsystem.votacao.service.PautaService;
+import br.com.southsystem.votacao.service.SessaoVotacaoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Tag(name = "Pauta", description = "Realiza operações relacionadas a pauta de uma assembléia")
+@Tag(name = "Sessão Votação", description = "Realiza operações relacionadas a sessão de votação")
 @RestController
-@RequestMapping("/v1/pautas")
-public class PautaController {
+@RequestMapping("/v1/sessao-votacao")
+public class SessaoVotacaoController {
 
 	@Autowired
-	private PautaService service;
+	private SessaoVotacaoService service;
 	
-	@Operation(summary = "Cadastra uma nova pauta")
+	@Operation(summary = "Cadastra uma nova sessão para votação")
 	@PostMapping
-	public ResponseEntity<CadastroPautaResponse> cadastraPauta(@Valid @RequestBody CadastroPautaRequest request) throws DomainException {
+	public ResponseEntity<CadastroSessaoVotacaoResponse> cadastraSessaoVotacao(@Valid @RequestBody CadastroSessaoVotacaoRequest request) throws DomainException {
 		
-		CadastroPautaResponse response = service.cadastraPauta(request);
+		CadastroSessaoVotacaoResponse response = service.cadastraSessaoVotacao(request);
 		
 		return new ResponseEntity<>(response, HttpStatus.CREATED);
 	}

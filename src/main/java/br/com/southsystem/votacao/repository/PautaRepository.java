@@ -6,5 +6,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface PautaRepository extends MongoRepository<PautaDocument, String> {
 
-    public Optional<PautaDocument> findByNumeroPauta(Integer numeroPauta);
+    Optional<PautaDocument> findByNumeroPauta(Integer numeroPauta);
 }
