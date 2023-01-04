@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.southsystem.votacao.config.DomainException;
-import br.com.southsystem.votacao.controller.CadastroSessaoVotacaoRequest;
-import br.com.southsystem.votacao.controller.CadastroSessaoVotacaoResponse;
+import br.com.southsystem.votacao.dto.CadastroSessaoVotacaoRequest;
+import br.com.southsystem.votacao.dto.CadastroSessaoVotacaoResponse;
 import br.com.southsystem.votacao.repository.PautaDocument;
 import br.com.southsystem.votacao.repository.PautaRepository;
 import br.com.southsystem.votacao.repository.SessaoVotacaoDocument;
@@ -35,7 +35,7 @@ public class SessaoVotacaoService {
 		
 		Optional<PautaDocument> pautaProcurada = pautaRepository.findByNumeroPauta(request.getNumeroPauta());
 		if(!pautaProcurada.isPresent()) {
-			throw new DomainException("É necessário ter uma Pauta ativa para iniciar a votação");
+			throw new DomainException("É necessário ter uma Pauta ativa para iniciar uma sessão de votação");
 		}
 		
 		log.info("Cria sessão votação {}", request);

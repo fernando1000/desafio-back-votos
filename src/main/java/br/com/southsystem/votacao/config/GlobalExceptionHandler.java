@@ -43,7 +43,7 @@ public class GlobalExceptionHandler {
     	log.error("Mensagem do dominio");
     	HashMap<String, String> erros = new HashMap<>();
     	erros.put("mensagem", ex.getMessage());
-        return new ResponseEntity<>(new ApiErro(erros), HttpStatus.CONFLICT);
+        return new ResponseEntity<>(new ApiErro(erros), HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
 }

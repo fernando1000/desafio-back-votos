@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.southsystem.votacao.config.DomainException;
+import br.com.southsystem.votacao.dto.CadastroPautaRequest;
+import br.com.southsystem.votacao.dto.CadastroPautaResponse;
 import br.com.southsystem.votacao.service.PautaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

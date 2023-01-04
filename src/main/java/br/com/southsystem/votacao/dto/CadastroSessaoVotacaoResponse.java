@@ -1,4 +1,4 @@
-package br.com.southsystem.votacao.controller;
+package br.com.southsystem.votacao.dto;
 
 import java.time.LocalDateTime;
 

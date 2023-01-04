@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.southsystem.votacao.config.DomainException;
-import br.com.southsystem.votacao.controller.CadastroPautaRequest;
-import br.com.southsystem.votacao.controller.CadastroPautaResponse;
+import br.com.southsystem.votacao.dto.CadastroPautaRequest;
+import br.com.southsystem.votacao.dto.CadastroPautaResponse;
 import br.com.southsystem.votacao.repository.PautaDocument;
 import br.com.southsystem.votacao.repository.PautaRepository;
 import lombok.extern.log4j.Log4j2;

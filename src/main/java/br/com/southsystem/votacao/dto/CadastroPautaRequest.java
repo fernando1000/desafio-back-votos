@@ -1,4 +1,4 @@
-package br.com.southsystem.votacao.controller;
+package br.com.southsystem.votacao.dto;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
