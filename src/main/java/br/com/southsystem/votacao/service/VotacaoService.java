@@ -1,6 +1,7 @@
 package br.com.southsystem.votacao.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import br.com.southsystem.votacao.config.DomainException;
 import br.com.southsystem.votacao.dto.RealizaVotacaoRequest;
 import br.com.southsystem.votacao.dto.RealizaVotacaoResponse;
+import br.com.southsystem.votacao.dto.ResultadoVotacaoResponse;
 import br.com.southsystem.votacao.repository.PautaDocument;
 import br.com.southsystem.votacao.repository.PautaRepository;
 import br.com.southsystem.votacao.repository.SessaoVotacaoDocument;
@@ -63,6 +65,23 @@ public class VotacaoService {
 		VotacaoDocument saved = votacaoRepository.save(votacao);
 		
 		return new RealizaVotacaoResponse(saved.getId(), saved.getNumeroPauta(), saved.getCpfAssociado(), request.getConcordaComPauta());
+	}
+	
+	public ResultadoVotacaoResponse obterResultadoVotacao(Integer numeroPauta) throws DomainException {
+		
+		Optional<PautaDocument> pautaProcurada = pautaRepository.findByNumeroPauta(numeroPauta);
+		if(!pautaProcurada.isPresent()) {
+			throw new DomainException("Pauta não encontrada");
+		}
+		List<VotacaoDocument> votacoes = votacaoRepository.findAllByNumeroPauta(numeroPauta);
+		long sim = votacoes.stream().filter(VotacaoDocument::getConcordaComPauta).count();
+		
+		ResultadoVotacaoResponse resultado = new ResultadoVotacaoResponse();
+		resultado.setNumeroPauta(numeroPauta);
+		resultado.setAssuntoPauta(pautaProcurada.get().getAssuntoPauta());
+		resultado.setVotosPositivos(sim);
+		resultado.setVotosNegativos(votacoes.size() - sim);
+		return resultado;
 	}
 	
 	private void validaCpf(Long cpf) throws DomainException {
